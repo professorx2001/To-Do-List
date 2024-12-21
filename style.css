@@ -1,0 +1,83 @@
+:root{
+    --backgroundColor : #000103;
+    --cardColor : #333138;
+    --textColor : #FFFFFA;
+    --addButton : #67AAF9;
+    --deleteButton : #FF312E;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
+    font-size: 16px;
+    text-align: center;
+}
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+#container{
+    padding: 10px 20px;
+    background-color: var(--cardColor);
+    border-radius: 5px;
+    background-color: linear-gradient();
+    /* height: 400px; */
+}
+h1{
+    font-size: 52px;
+    background-color: transparent;
+    padding: 4px 8px;
+    margin: 5px;
+}
+ul{
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    list-style-type: none;
+    background-color: transparent;
+}
+input{
+    color: white;
+    background-color: #6A7B76;
+    padding: 4px 5px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 18px;
+    text-align: left;
+}
+
+li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3px;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6A7B76;
+}
+
+button{
+    background-color: var(--addButton);
+    padding: 4px 8px;
+    border: none;
+    border-radius: 5px;
+}
+button:hover{
+    background-color: #2A4494;
+}
+li button{
+    background-color: var(--deleteButton);
+    font-size: 14px;
+    margin: 3px;
+}
+li button:hover{
+    background-color: #df3535;
+}
