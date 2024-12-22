@@ -1,22 +1,46 @@
-const inputField = document.getElementById("input-field");
-const addTask = document.getElementById("add-task");
-const taskList = document.getElementById("task-list");
+document.addEventListener("DOMContentLoaded", () => {
+    const inputField = document.getElementById("input-field");
+    const addTask = document.getElementById("add-task");
+    const taskList = document.getElementById("task-list");
 
-addTask.addEventListener("click", function () {
-  if (inputField.value === "") return;
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-  const newElement = document.createElement("li");
-  const newElementButton = document.createElement("button");
+    tasks.forEach((task) => renderTask(task));
 
-  newElement.textContent = inputField.value;
-  newElementButton.textContent = "Delete";
+    addTask.addEventListener("click", function () {
+        const taskValue = inputField.value.trim();
+        if (taskValue === "") return;
 
-  newElement.appendChild(newElementButton);
-  taskList.appendChild(newElement);
+        const newTask = {
+            id: Date.now(),
+            text: taskValue,
+        };
 
-  newElementButton.addEventListener("click", function () {
-    taskList.removeChild(newElement);
-  });
+        tasks.push(newTask);
+        saveTasksLocally();
+        renderTask(newTask);
+        inputField.value = "";
+    });
 
-  inputField.value = "";
+    function saveTasksLocally() {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    function renderTask(task) {
+        const newElement = document.createElement("li");
+        newElement.innerHTML = `
+            ${task.text}
+            <button class="delete-btn">Delete</button>
+        `;
+        taskList.appendChild(newElement);
+
+        const deleteButton = newElement.querySelector(".delete-btn");
+        deleteButton.addEventListener("click", function () {
+            taskList.removeChild(newElement);
+            // updating task array
+            tasks = tasks.filter((t) => t.id !== task.id);
+            //updating local storage so that deletion is permanent
+            saveTasksLocally();
+        });
+    }
 });
