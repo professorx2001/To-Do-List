@@ -7,7 +7,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     tasks.forEach((task) => renderTask(task));
 
-    addTask.addEventListener("click", function () {
+    addTask.addEventListener("click", addNewTask);
+
+    // Add event listener for pressing "Enter" key
+    inputField.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            addNewTask();
+        }
+    });
+
+    function addNewTask() {
         const taskValue = inputField.value.trim();
         if (taskValue === "") return;
 
@@ -20,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         saveTasksLocally();
         renderTask(newTask);
         inputField.value = "";
-    });
+    }
 
     function saveTasksLocally() {
         localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -37,9 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const deleteButton = newElement.querySelector(".delete-btn");
         deleteButton.addEventListener("click", function () {
             taskList.removeChild(newElement);
-            // updating task array
             tasks = tasks.filter((t) => t.id !== task.id);
-            //updating local storage so that deletion is permanent
             saveTasksLocally();
         });
     }
