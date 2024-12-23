@@ -10,7 +10,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: var(--backgroundColor);
     color: var(--textColor);
     font-size: 16px;
     text-align: center;
@@ -20,14 +19,13 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--backgroundColor);
     
 }
 #container{
     padding: 10px 20px;
     background-color: var(--cardColor);
     border-radius: 5px;
-    background-color: linear-gradient();
-    /* height: 400px; */
 }
 h1{
     font-size: 52px;
